@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Cart | Aurum</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#D4AF37", secondary: "#000000" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      body {
+        font-family: 'Montserrat', sans-serif;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Playfair Display', serif;
+      }
+      .logo {
+        font-family: 'Pacifico', serif;
+      }
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body class="bg-white">
+    <!-- Header -->
+    <header class="bg-secondary text-white py-4 fixed w-full z-50 shadow-md">
+      <div class="container mx-auto px-6 flex items-center justify-between">
+        <a href="index.html" class="logo text-primary text-3xl">Aurum</a>
+        <div class="flex items-center space-x-6">
+          <div
+            class="w-6 h-6 flex items-center justify-center text-primary cursor-pointer"
+          >
+            <i class="ri-shopping-bag-line ri-lg"></i>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-16">
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+          <h1 class="text-3xl md:text-4xl font-bold text-center mb-8">
+            Shopping Cart
+          </h1>
+
+          <!-- Cart Items -->
+          <div class="space-y-6 mb-12">
+            <!-- Cart Item 1 -->
+            <div class="bg-white rounded-lg border border-gray-200 p-6">
+              <div class="flex items-start gap-6">
+                <img
+                  src="https://readdy.ai/api/search-image?query=luxury%20chocolate%20bonbons%20with%20gold%20dusting%20arranged%20in%20an%20elegant%20pattern%20on%20dark%20marble%20background%2C%20professional%20food%20photography%20with%20dramatic%20lighting%2C%20gourmet%20confectionery&width=200&height=200&seq=301&orientation=squarish"
+                  alt="Custom Bonbons"
+                  class="w-24 h-24 object-cover rounded"
+                />
+                <div class="flex-1">
+                  <div class="flex justify-between items-start">
+                    <div>
+                      <h3 class="font-semibold text-lg">
+                        Custom Bonbons Collection
+                      </h3>
+                      <p class="text-gray-600 text-sm">Classic Gold Box</p>
+                    </div>
+                    <button
+                      class="text-gray-400 hover:text-red-500 transition-colors"
+                    >
+                      <i class="ri-delete-bin-line ri-lg"></i>
+                    </button>
+                  </div>
+                  <div class="mt-4 flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                      <button
+                        class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:border-primary transition-colors"
+                      >
+                        <i class="ri-subtract-line"></i>
+                      </button>
+                      <input
+                        type="number"
+                        value="6"
+                        min="6"
+                        max="24"
+                        step="6"
+                        class="w-16 text-center text-lg font-semibold border-none"
+                      />
+                      <button
+                        class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:border-primary transition-colors"
+                      >
+                        <i class="ri-add-line"></i>
+                      </button>
+                    </div>
+                    <span class="font-semibold">$32.00</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cart Item 2 -->
+            <div class="bg-white rounded-lg border border-gray-200 p-6">
+              <div class="flex items-start gap-6">
+                <img
+                  src="https://readdy.ai/api/search-image?query=luxury%20chocolate%20truffles%20with%20gold%20leaf%20decoration%20arranged%20in%20an%20elegant%20pattern%20on%20dark%20marble%20background%2C%20professional%20food%20photography%20with%20dramatic%20lighting%2C%20gourmet%20confectionery&width=200&height=200&seq=302&orientation=squarish"
+                  alt="Custom Bonbons"
+                  class="w-24 h-24 object-cover rounded"
+                />
+                <div class="flex-1">
+                  <div class="flex justify-between items-start">
+                    <div>
+                      <h3 class="font-semibold text-lg">
+                        Custom Bonbons Collection
+                      </h3>
+                      <p class="text-gray-600 text-sm">
+                        Premium Collection Box
+                      </p>
+                    </div>
+                    <button
+                      class="text-gray-400 hover:text-red-500 transition-colors"
+                    >
+                      <i class="ri-delete-bin-line ri-lg"></i>
+                    </button>
+                  </div>
+                  <div class="mt-4 flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                      <button
+                        class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:border-primary transition-colors"
+                      >
+                        <i class="ri-subtract-line"></i>
+                      </button>
+                      <input
+                        type="number"
+                        value="12"
+                        min="6"
+                        max="24"
+                        step="6"
+                        class="w-16 text-center text-lg font-semibold border-none"
+                      />
+                      <button
+                        class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:border-primary transition-colors"
+                      >
+                        <i class="ri-add-line"></i>
+                      </button>
+                    </div>
+                    <span class="font-semibold">$60.00</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Order Summary -->
+          <div class="bg-gray-50 rounded-lg p-6 mb-8">
+            <h2 class="text-xl font-semibold mb-4">Order Summary</h2>
+            <div class="space-y-3">
+              <div class="flex justify-between">
+                <span class="text-gray-600">Subtotal</span>
+                <span class="font-semibold">$92.00</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600">Shipping</span>
+                <span class="font-semibold">$8.00</span>
+              </div>
+              <div class="border-t border-gray-200 pt-3 flex justify-between">
+                <span class="text-lg font-semibold">Total</span>
+                <span class="text-lg font-semibold text-primary total-price">$100.00</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Buttons -->
+          <div
+            class="flex flex-col sm:flex-row justify-between items-center gap-4"
+          >
+            <a
+              href="customize-step3.html"
+              class="flex items-center text-secondary hover:text-primary transition-colors"
+            >
+              <i class="ri-arrow-left-line mr-2"></i>
+              Continue Shopping
+            </a>
+            <button
+              class="bg-primary text-white py-3 px-8 rounded-button hover:bg-primary/90 transition-colors whitespace-nowrap w-full sm:w-auto"
+            >
+              Proceed to Checkout
+              <i class="ri-arrow-right-line ml-2"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const quantityInputs = document.querySelectorAll('input[type="number"]');
+        const decreaseButtons = document.querySelectorAll(
+          "button:has(.ri-subtract-line)",
+        );
+        const increaseButtons = document.querySelectorAll("button:has(.ri-add-line)");
+        const deleteButtons = document.querySelectorAll(
+          "button:has(.ri-delete-bin-line)",
+        );
+        function updateQuantity(input, change) {
+          let currentValue = parseInt(input.value);
+          let newValue = currentValue + change;
+          newValue = Math.max(6, Math.min(24, newValue));
+          newValue = Math.round(newValue / 6) * 6;
+          input.value = newValue;
+          updateItemPrice(input);
+        }
+
+        function updateItemPrice(input) {
+          const quantity = parseInt(input.value);
+          const itemContainer = input.closest(".bg-white");
+          const isClassicBox = itemContainer
+            .querySelector(".text-gray-600")
+            .textContent.includes("Classic");
+          const pricePerPiece = 4;
+          const boxPrice = isClassicBox ? 8 : 12;
+          const total = quantity * pricePerPiece + boxPrice;
+
+          itemContainer.querySelector(".font-semibold:last-child").textContent =
+            `$${total.toFixed(2)}`;
+          updateOrderSummary();
+        }
+
+        function updateOrderSummary() {
+          const itemPrices = Array.from(
+            document.querySelectorAll(".bg-white .font-semibold:last-child"),
+          ).map((el) => parseFloat(el.textContent.replace("$", "")));
+
+          const subtotal = itemPrices.reduce((sum, price) => sum + price, 0);
+          const shipping = 8;
+          const total = subtotal + shipping;
+
+          document.querySelector(".space-y-3 .font-semibold").textContent =
+            `$${subtotal.toFixed(2)}`;
+          document.querySelector(".total-price").textContent =
+            `$${total.toFixed(2)}`;
+        }
+
+        decreaseButtons.forEach((button, index) => {
+          button.addEventListener("click", () => {
+            updateQuantity(quantityInputs[index], -6);
+          });
+        });
+
+        increaseButtons.forEach((button, index) => {
+          button.addEventListener("click", () => {
+            updateQuantity(quantityInputs[index], 6);
+          });
+        });
+
+        quantityInputs.forEach((input) => {
+          input.addEventListener("change", () => {
+            let value = parseInt(input.value);
+            value = Math.max(6, Math.min(24, value));
+            value = Math.round(value / 6) * 6;
+            input.value = value;
+            updateItemPrice(input);
+          });
+        });
+
+        deleteButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const itemContainer = button.closest(".bg-white");
+            itemContainer.remove();
+            updateOrderSummary();
+
+            if (document.querySelectorAll(".bg-white").length === 0) {
+              const emptyCart = document.createElement("div");
+              emptyCart.className = "text-center py-12";
+              emptyCart.innerHTML = `
+                <i class="ri-shopping-cart-line ri-3x text-gray-300 mb-4"></i>
+                <h2 class="text-xl font-semibold mb-2">Your cart is empty</h2>
+                <p class="text-gray-600 mb-6">Add some delicious bonbons to your cart</p>
+                <a href="customize-step1.html" class="inline-flex items-center text-primary hover:text-primary/90 transition-colors">
+                  <i class="ri-add-line mr-2"></i>
+                  Create Custom Bonbons
+                </a>
+              `;
+              document.querySelector(".space-y-6").appendChild(emptyCart);
+              document.querySelector(".bg-gray-50").style.display = "none";
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Collections - Aurum Chocolates</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#D4AF37", secondary: "#000000" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      body {
+          font-family: 'Montserrat', sans-serif;
+      }
+      h1, h2, h3, h4, h5, h6 {
+          font-family: 'Playfair Display', serif;
+      }
+      .logo {
+          font-family: 'Pacifico', serif;
+      }
+      .scroll-progress {
+          position: fixed;
+          top: 0;
+          left: 0;
+          height: 3px;
+          background-color: #D4AF37;
+          z-index: 9999;
+          transition: width 0.2s;
+      }
+      .product-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      }
+      .custom-checkbox {
+          appearance: none;
+          width: 18px;
+          height: 18px;
+          border: 2px solid #D4AF37;
+          border-radius: 4px;
+          background-color: transparent;
+          display: inline-block;
+          position: relative;
+          cursor: pointer;
+      }
+      .custom-checkbox:checked {
+          background-color: #D4AF37;
+      }
+      .custom-checkbox:checked::after {
+          content: '';
+          position: absolute;
+          left: 5px;
+          top: 2px;
+          width: 5px;
+          height: 10px;
+          border: solid white;
+          border-width: 0 2px 2px 0;
+          transform: rotate(45deg);
+      }
+      input:focus, button:focus {
+          outline: none;
+          box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.3);
+      }
+      .cart-panel {
+          transform: translateX(100%);
+          transition: transform 0.3s ease-in-out;
+      }
+      .cart-panel.open {
+          transform: translateX(0);
+      }
+      .price-slider {
+          -webkit-appearance: none;
+          width: 100%;
+          height: 4px;
+          border-radius: 5px;
+          background: #e2e8f0;
+          outline: none;
+      }
+      .price-slider::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          background: #D4AF37;
+          cursor: pointer;
+          border: 2px solid white;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+      }
+      .price-slider::-moz-range-thumb {
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          background: #D4AF37;
+          cursor: pointer;
+          border: 2px solid white;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+      }
+      .filter-switch {
+          position: relative;
+          display: inline-block;
+          width: 36px;
+          height: 20px;
+      }
+      .filter-switch input {
+          opacity: 0;
+          width: 0;
+          height: 0;
+      }
+      .filter-slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: #e2e8f0;
+          transition: .4s;
+          border-radius: 20px;
+      }
+      .filter-slider:before {
+          position: absolute;
+          content: "";
+          height: 16px;
+          width: 16px;
+          left: 2px;
+          bottom: 2px;
+          background-color: white;
+          transition: .4s;
+          border-radius: 50%;
+      }
+      input:checked + .filter-slider {
+          background-color: #D4AF37;
+      }
+      input:checked + .filter-slider:before {
+          transform: translateX(16px);
+      }
+      .mobile-filter-panel {
+          transform: translateY(100%);
+          transition: transform 0.3s ease-in-out;
+      }
+      .mobile-filter-panel.open {
+          transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body class="bg-white">
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Header Section -->
+    <header
+      class="bg-secondary text-white py-4 fixed w-full z-50 transition-all duration-300"
+      id="header"
+    >
+      <div class="container mx-auto px-6 flex items-center justify-between">
+        <a
+          href="https://readdy.ai/home/3cb038c5-34bb-4083-a71d-8204ed17e274/902307d7-3ca3-4126-9595-9c76be48d4b5"
+          data-readdy="true"
+          class="logo text-primary text-3xl"
+          >Aurum</a
+        >
+        <div class="hidden md:flex items-center space-x-8">
+          <a
+            href="https://readdy.ai/home/3cb038c5-34bb-4083-a71d-8204ed17e274/902307d7-3ca3-4126-9595-9c76be48d4b5"
+            data-readdy="true"
+            class="text-white hover:text-primary transition-colors"
+            >Home</a
+          >
+          <a href="#" class="text-primary transition-colors">Collections</a>
+          <a href="#" class="text-white hover:text-primary transition-colors"
+            >About</a
+          >
+          <a href="#" class="text-white hover:text-primary transition-colors"
+            >Reviews</a
+          >
+        </div>
+        <div class="relative mx-4 hidden md:block flex-1 max-w-md">
+          <input
+            type="text"
+            placeholder="Search our collections..."
+            class="w-full bg-secondary border border-primary/40 text-white py-2 px-4 pr-10 rounded-button focus:border-primary"
+          />
+          <div
+            class="absolute right-3 top-1/2 transform -translate-y-1/2 w-6 h-6 flex items-center justify-center text-primary"
+          >
+            <i class="ri-search-line"></i>
+          </div>
+        </div>
+        <div class="flex items-center space-x-6">
+          <div
+            class="w-6 h-6 flex items-center justify-center text-primary cursor-pointer"
+            id="cartToggle"
+          >
+            <i class="ri-shopping-bag-line ri-lg"></i>
+          </div>
+          <div
+            class="w-6 h-6 flex items-center justify-center text-primary cursor-pointer"
+          >
+            <i class="ri-user-line ri-lg"></i>
+          </div>
+          <div
+            class="w-6 h-6 flex items-center justify-center text-primary md:hidden cursor-pointer"
+            id="mobileMenuToggle"
+          >
+            <i class="ri-menu-line ri-lg"></i>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div
+      class="fixed inset-0 bg-secondary z-40 transform translate-x-full transition-transform duration-300"
+      id="mobileMenu"
+    >
+      <div class="flex justify-end p-6">
+        <div
+          class="w-8 h-8 flex items-center justify-center text-primary cursor-pointer"
+          id="mobileMenuClose"
+        >
+          <i class="ri-close-line ri-2x"></i>
+        </div>
+      </div>
+      <div class="flex flex-col items-center space-y-8 mt-16 text-xl">
+        <a
+          href="https://readdy.ai/home/3cb038c5-34bb-4083-a71d-8204ed17e274/902307d7-3ca3-4126-9595-9c76be48d4b5"
+          data-readdy="true"
+          class="text-white hover:text-primary transition-colors"
+          >Home</a
+        >
+        <a href="#" class="text-primary transition-colors">Collections</a>
+        <a href="#" class="text-white hover:text-primary transition-colors"
+          >About</a
+        >
+        <a href="#" class="text-white hover:text-primary transition-colors"
+          >Reviews</a
+        >
+        <div class="relative w-full max-w-xs mt-8 px-6">
+          <input
+            type="text"
+            placeholder="Search..."
+            class="w-full bg-secondary border border-primary/40 text-white py-2 px-4 pr-10 rounded-button focus:border-primary"
+          />
+          <div
+            class="absolute right-9 top-1/2 transform -translate-y-1/2 w-6 h-6 flex items-center justify-center text-primary"
+          >
+            <i class="ri-search-line"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cart Panel -->
+    <div
+      class="fixed inset-y-0 right-0 w-full max-w-md bg-white shadow-xl z-50 cart-panel"
+      id="cartPanel"
+    >
+      <div class="h-full flex flex-col">
+        <div
+          class="flex items-center justify-between p-6 border-b border-gray-200"
+        >
+          <h3 class="text-xl font-semibold">Your Cart</h3>
+          <div
+            class="w-8 h-8 flex items-center justify-center text-secondary cursor-pointer"
+            id="cartClose"
+          >
+            <i class="ri-close-line ri-lg"></i>
+          </div>
+        </div>
+        <div class="flex-1 overflow-y-auto p-6 space-y-6">
+          <div class="flex items-center space-x-4">
+            <img
+              src="https://readdy.ai/api/search-image?query=luxury%2520chocolate%2520bonbon%2520with%2520gold%2520dusting%2520on%2520top%252C%2520single%2520piece%2520on%2520dark%2520background%252C%2520high-end%2520gourmet%2520confectionery%252C%2520professional%2520food%2520photography%252C%2520macro%2520shot%2520with%2520shallow%2520depth%2520of%2520field&width=100&height=100&seq=2&orientation=squarish"
+              alt="Chocolate Bonbon"
+              class="w-20 h-20 object-cover rounded"
+            />
+            <div class="flex-1">
+              <h4 class="font-medium">Gold Dusted Truffle</h4>
+              <p class="text-gray-500 text-sm">Dark Chocolate</p>
+              <div class="flex items-center justify-between mt-2">
+                <span class="text-primary font-medium">$12.95</span>
+                <div class="flex items-center space-x-2">
+                  <button
+                    class="w-6 h-6 flex items-center justify-center border border-gray-300 rounded-full !rounded-full text-sm"
+                  >
+                    -
+                  </button>
+                  <span class="text-sm">1</span>
+                  <button
+                    class="w-6 h-6 flex items-center justify-center border border-gray-300 rounded-full !rounded-full text-sm"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center space-x-4">
+            <img
+              src="https://readdy.ai/api/search-image?query=luxury%2520chocolate%2520bonbon%2520with%2520raspberry%2520filling%252C%2520single%2520piece%2520on%2520dark%2520background%252C%2520high-end%2520gourmet%2520confectionery%252C%2520professional%2520food%2520photography%252C%2520macro%2520shot%2520with%2520shallow%2520depth%2520of%2520field&width=100&height=100&seq=3&orientation=squarish"
+              alt="Raspberry Bonbon"
+              class="w-20 h-20 object-cover rounded"
+            />
+            <div class="flex-1">
+              <h4 class="font-medium">Raspberry Delight</h4>
+              <p class="text-gray-500 text-sm">White Chocolate</p>
+              <div class="flex items-center justify-between mt-2">
+                <span class="text-primary font-medium">$14.50</span>
+                <div class="flex items-center space-x-2">
+                  <button
+                    class="w-6 h-6 flex items-center justify-center border border-gray-300 rounded-full !rounded-full text-sm"
+                  >
+                    -
+                  </button>
+                  <span class="text-sm">2</span>
+                  <button
+                    class="w-6 h-6 flex items-center justify-center border border-gray-300 rounded-full !rounded-full text-sm"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 border-t border-gray-200">
+          <div class="flex justify-between mb-4">
+            <span class="text-gray-600">Subtotal</span>
+            <span class="font-medium">$41.95</span>
+          </div>
+          <div class="flex justify-between mb-6">
+            <span class="text-gray-600">Shipping</span>
+            <span class="font-medium">$5.00</span>
+          </div>
+          <div class="flex justify-between mb-6 text-lg font-semibold">
+            <span>Total</span>
+            <span class="text-primary">$46.95</span>
+          </div>
+          <button
+            class="w-full bg-primary text-white py-3 px-4 rounded-button hover:bg-primary/90 transition-colors !rounded-button whitespace-nowrap"
+          >
+            Checkout
+          </button>
+          <button
+            class="w-full border border-secondary text-secondary py-3 px-4 rounded-button mt-3 hover:bg-secondary hover:text-white transition-colors !rounded-button whitespace-nowrap"
+          >
+            Continue Shopping
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Filter Panel -->
+    <div
+      class="fixed inset-x-0 bottom-0 bg-white shadow-xl z-40 mobile-filter-panel h-[80vh] rounded-t-xl"
+      id="mobileFilterPanel"
+    >
+      <div class="h-full flex flex-col">
+        <div
+          class="flex items-center justify-between p-6 border-b border-gray-200"
+        >
+          <h3 class="text-xl font-semibold">Filter Products</h3>
+          <div
+            class="w-8 h-8 flex items-center justify-center text-secondary cursor-pointer"
+            id="mobileFilterClose"
+          >
+            <i class="ri-close-line ri-lg"></i>
+          </div>
+        </div>
+        <div class="flex-1 overflow-y-auto p-6 space-y-8">
+          <!-- Category Filter Mobile -->
+          <div>
+            <h4 class="font-semibold mb-4">Category</h4>
+            <div class="space-y-3">
+              <label class="flex items-center">
+                <input type="checkbox" class="custom-checkbox mr-3" checked />
+                <span>All Collections</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" class="custom-checkbox mr-3" />
+                <span>Truffles</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" class="custom-checkbox mr-3" />
+                <span>Pralines</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" class="custom-checkbox mr-3" />
+                <span>Gift Boxes</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" class="custom-checkbox mr-3" />
+                <span>Limited Edition</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Price Range Mobile -->
+          <div>
+            <h4 class="font-semibold mb-4">Price Range</h4>
+            <div class="px-2">
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value="75"
+                class="price-slider"
+                id="mobilePriceSlider"
+              />
+              <div class="flex justify-between mt-2 text-sm text-gray-600">
+                <span>$0</span>
+                <span id="mobilePriceValue">$75</span>
+                <span>$100</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flavor Profile Mobile -->
+          <div>
+            <h4 class="font-semibold mb-4">Flavor Profile</h4>
+            <div class="grid grid-cols-2 gap-3">
+              <label class="flex items-center">
+                <input type="checkbox" class="custom-checkbox mr-3" />
+                <span>Dark Chocolate</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" class="custom-checkbox mr-3" />
+                <span>Milk Chocolate</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" class="custom-checkbox mr-3" />
+                <span>White Chocolate</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" class="custom-checkbox mr-3" />
+                <span>Fruit Filled</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" class="custom-checkbox mr-3" />
+                <span>Nut Based</span>
+              </label>
+              <label class="flex items-center">
+                <input type="checkbox" class="custom-checkbox mr-3" />
+                <span>Caramel</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Dietary Preferences Mobile -->
+          <div>
+            <h4 class="font-semibold mb-4">Dietary Preferences</h4>
+            <div class="space-y-3">
+              <label class="flex items-center justify-between">
+                <span>Vegan</span>
+                <label class="filter-switch">
+                  <input type="checkbox" />
+                  <span class="filter-slider"></span>
+                </label>
+              </label>
+              <label class="flex items-center justify-between">
+                <span>Gluten-free</span>
+                <label class="filter-switch">
+                  <input type="checkbox" />
+                  <span class="filter-slider"></span>
+                </label>
+              </label>
+              <label class="flex items-center justify-between">
+                <span>Sugar-free</span>
+                <label class="filter-switch">
+                  <input type="checkbox" />
+                  <span class="filter-slider"></span>
+                </label>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 border-t border-gray-200 flex gap-4">
+          <button
+            class="flex-1 border border-gray-300 text-gray-700 py-3 px-4 rounded-button hover:bg-gray-100 transition-colors !rounded-button whitespace-nowrap"
+          >
+            Reset
+          </button>
+          <button
+            class="flex-1 bg-primary text-white py-3 px-4 rounded-button hover:bg-primary/90 transition-colors !rounded-button whitespace-nowrap"
+          >
+            Apply Filters
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-16">
+      <!-- Breadcrumb -->
+      <div class="container mx-auto px-6 py-4">
+        <div class="flex items-center text-sm text-gray-500">
+          <a
+            href="https://readdy.ai/home/3cb038c5-34bb-4083-a71d-8204ed17e274/902307d7-3ca3-4126-9595-9c76be48d4b5"
+            data-readdy="true"
+            class="hover:text-primary transition-colors"
+            >Home</a
+          >
+          <span class="mx-2">/</span>
+          <a
+            href="https://readdy.ai/home/3cb038c5-34bb-4083-a71d-8204ed17e274/902307d7-3ca3-4126-9595-9c76be48d4b5"
+            data-readdy="true"
+            class="hover:text-primary transition-colors"
+            >Collections</a
+          >
+          <span class="mx-2">/</span>
+          <span class="text-primary">All Collections</span>
+        </div>
+      </div>
+
+      <!-- Page Title -->
+      <div class="container mx-auto px-6 mb-8">
+        <h1 class="text-4xl md:text-5xl font-bold">All Collections</h1>
+        <p class="text-gray-600 mt-2">
+          Discover our exquisite handcrafted chocolate bonbons, made with the
+          finest ingredients.
+        </p>
+      </div>
+
+      <!-- Filter and Product Section -->
+      <div class="container mx-auto px-6">
+        <div class="flex flex-col lg:flex-row gap-8">
+          <!-- Sidebar Filters (Desktop) -->
+          <div class="hidden lg:block w-64 flex-shrink-0">
+            <div class="sticky top-32 space-y-8">
+              <!-- Category Filter -->
+              <div
+                class="bg-white p-6 rounded-lg shadow-sm border border-gray-100"
+              >
+                <h3 class="font-semibold mb-4 text-lg">Category</h3>
+                <div class="space-y-3">
+                  <label class="flex items-center">
+                    <input
+                      type="checkbox"
+                      class="custom-checkbox mr-3"
+                      checked
+                    />
+                    <span>All Collections</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="checkbox" class="custom-checkbox mr-3" />
+                    <span>Truffles</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="checkbox" class="custom-checkbox mr-3" />
+                    <span>Pralines</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="checkbox" class="custom-checkbox mr-3" />
+                    <span>Gift Boxes</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="checkbox" class="custom-checkbox mr-3" />
+                    <span>Limited Edition</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Price Range -->
+              <div
+                class="bg-white p-6 rounded-lg shadow-sm border border-gray-100"
+              >
+                <h3 class="font-semibold mb-4 text-lg">Price Range</h3>
+                <div class="px-2">
+                  <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value="75"
+                    class="price-slider"
+                    id="priceSlider"
+                  />
+                  <div class="flex justify-between mt-2 text-sm text-gray-600">
+                    <span>$0</span>
+                    <span id="priceValue">$75</span>
+                    <span>$100</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Flavor Profile -->
+              <div
+                class="bg-white p-6 rounded-lg shadow-sm border border-gray-100"
+              >
+                <h3 class="font-semibold mb-4 text-lg">Flavor Profile</h3>
+                <div class="space-y-3">
+                  <label class="flex items-center">
+                    <input type="checkbox" class="custom-checkbox mr-3" />
+                    <span>Dark Chocolate</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="checkbox" class="custom-checkbox mr-3" />
+                    <span>Milk Chocolate</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="checkbox" class="custom-checkbox mr-3" />
+                    <span>White Chocolate</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="checkbox" class="custom-checkbox mr-3" />
+                    <span>Fruit Filled</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="checkbox" class="custom-checkbox mr-3" />
+                    <span>Nut Based</span>
+                  </label>
+                  <label class="flex items-center">
+                    <input type="checkbox" class="custom-checkbox mr-3" />
+                    <span>Caramel</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Dietary Preferences -->
+              <div
+                class="bg-white p-6 rounded-lg shadow-sm border border-gray-100"
+              >
+                <h3 class="font-semibold mb-4 text-lg">Dietary Preferences</h3>
+                <div class="space-y-3">
+                  <label class="flex items-center justify-between">
+                    <span>Vegan</span>
+                    <label class="filter-switch">
+                      <input type="checkbox" />
+                      <span class="filter-slider"></span>
+                    </label>
+                  </label>
+                  <label class="flex items-center justify-between">
+                    <span>Gluten-free</span>
+                    <label class="filter-switch">
+                      <input type="checkbox" />
+                      <span class="filter-slider"></span>
+                    </label>
+                  </label>
+                  <label class="flex items-center justify-between">
+                    <span>Sugar-free</span>
+                    <label class="filter-switch">
+                      <input type="checkbox" />
+                      <span class="filter-slider"></span>
+                    </label>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Products Grid -->
+          <div class="flex-1">
+            <!-- Sort and Filter Bar -->
+            <div class="flex flex-wrap items-center justify-between mb-8 gap-4">
+              <div class="flex items-center">
+                <span class="text-gray-600 mr-2">24 products</span>
+              </div>
+              <div class="flex items-center gap-4">
+                <button
+                  class="lg:hidden flex items-center gap-2 border border-gray-300 bg-white py-2 px-4 rounded-button hover:border-primary hover:text-primary transition-colors !rounded-button whitespace-nowrap"
+                  id="mobileFilterToggle"
+                >
+                  <i class="ri-filter-3-line"></i>
+                  Filter
+                </button>
+                <div class="relative">
+                  <div
+                    class="flex items-center border border-gray-300 bg-white py-2 px-4 rounded-button cursor-pointer"
+                    id="sortDropdown"
+                  >
+                    <span class="mr-2">Sort by: Featured</span>
+                    <i class="ri-arrow-down-s-line"></i>
+                  </div>
+                  <div
+                    class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg overflow-hidden z-10 hidden"
+                    id="sortOptions"
+                  >
+                    <div class="py-2">
+                      <button
+                        class="w-full text-left px-4 py-2 hover:bg-gray-100 text-primary"
+                      >
+                        Featured
+                      </button>
+                      <button
+                        class="w-full text-left px-4 py-2 hover:bg-gray-100"
+                      >
+                        Price: Low to High
+                      </button>
+                      <button
+                        class="w-full text-left px-4 py-2 hover:bg-gray-100"
+                      >
+                        Price: High to Low
+                      </button>
+                      <button
+                        class="w-full text-left px-4 py-2 hover:bg-gray-100"
+                      >
+                        Newest
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="hidden md:flex items-center gap-2">
+                  <button
+                    class="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-lg hover:border-primary hover:text-primary transition-colors"
+                  >
+                    <i class="ri-layout-grid-line"></i>
+                  </button>
+                  <button
+                    class="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-lg hover:border-primary hover:text-primary transition-colors"
+                  >
+                    <i class="ri-list-check-2"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <!-- Product 1 -->
+              <div
+                class="product-card bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300"
+              >
+                <div class="relative">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=luxury%2520dark%2520chocolate%2520truffle%2520with%2520gold%2520flakes%2520on%2520top%252C%2520placed%2520on%2520dark%2520background%252C%2520professional%2520food%2520photography%2520with%2520dramatic%2520lighting%252C%2520high-end%2520gourmet%2520confectionery%252C%2520rich%2520textures%252C%2520shallow%2520depth%2520of%2520field&width=600&height=600&seq=4&orientation=squarish"
+                    alt="Gold Dusted Truffle"
+                    class="w-full h-64 object-cover object-top"
+                  />
+                  <div
+                    class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-md cursor-pointer hover:bg-primary hover:text-white transition-colors"
+                  >
+                    <i class="ri-heart-line"></i>
+                  </div>
+                </div>
+                <div class="p-6">
+                  <h3 class="text-xl font-semibold mb-2">
+                    Gold Dusted Truffle
+                  </h3>
+                  <p class="text-gray-600 text-sm mb-4">
+                    Rich dark chocolate ganache infused with vanilla and coated
+                    with 24k gold dust.
+                  </p>
+                  <div class="flex items-center justify-between">
+                    <span class="text-primary font-bold text-lg">$12.95</span>
+                    <button
+                      class="bg-secondary text-white py-2 px-4 rounded-button hover:bg-primary transition-colors !rounded-button whitespace-nowrap"
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product 2 -->
+              <div
+                class="product-card bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300"
+              >
+                <div class="relative">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=luxury%2520chocolate%2520bonbon%2520with%2520raspberry%2520filling%252C%2520elegant%2520design%2520with%2520red%2520accent%252C%2520placed%2520on%2520dark%2520background%252C%2520professional%2520food%2520photography%2520with%2520dramatic%2520lighting%252C%2520high-end%2520gourmet%2520confectionery%252C%2520rich%2520textures%252C%2520shallow%2520depth%2520of%2520field&width=600&height=600&seq=5&orientation=squarish"
+                    alt="Raspberry Delight"
+                    class="w-full h-64 object-cover object-top"
+                  />
+                  <div
+                    class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-md cursor-pointer hover:bg-primary hover:text-white transition-colors"
+                  >
+                    <i class="ri-heart-line"></i>
+                  </div>
+                </div>
+                <div class="p-6">
+                  <h3 class="text-xl font-semibold mb-2">Raspberry Delight</h3>
+                  <p class="text-gray-600 text-sm mb-4">
+                    White chocolate shell filled with raspberry ganache and
+                    fresh raspberry puree.
+                  </p>
+                  <div class="flex items-center justify-between">
+                    <span class="text-primary font-bold text-lg">$14.50</span>
+                    <button
+                      class="bg-secondary text-white py-2 px-4 rounded-button hover:bg-primary transition-colors !rounded-button whitespace-nowrap"
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product 3 -->
+              <div
+                class="product-card bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300"
+              >
+                <div class="relative">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=luxury%2520chocolate%2520bonbon%2520with%2520caramel%2520filling%252C%2520elegant%2520square%2520shape%2520with%2520gold%2520accent%252C%2520placed%2520on%2520dark%2520background%252C%2520professional%2520food%2520photography%2520with%2520dramatic%2520lighting%252C%2520high-end%2520gourmet%2520confectionery%252C%2520rich%2520textures%252C%2520shallow%2520depth%2520of%2520field&width=600&height=600&seq=6&orientation=squarish"
+                    alt="Salted Caramel Square"
+                    class="w-full h-64 object-cover object-top"
+                  />
+                  <div
+                    class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-md cursor-pointer hover:bg-primary hover:text-white transition-colors"
+                  >
+                    <i class="ri-heart-line"></i>
+                  </div>
+                  <div
+                    class="absolute top-4 left-4 bg-primary text-white text-xs py-1 px-3 rounded-full"
+                  >
+                    Bestseller
+                  </div>
+                </div>
+                <div class="p-6">
+                  <h3 class="text-xl font-semibold mb-2">
+                    Salted Caramel Square
+                  </h3>
+                  <p class="text-gray-600 text-sm mb-4">
+                    Milk chocolate square filled with buttery salted caramel and
+                    finished with gold leaf.
+                  </p>
+                  <div class="flex items-center justify-between">
+                    <span class="text-primary font-bold text-lg">$13.75</span>
+                    <button
+                      class="bg-secondary text-white py-2 px-4 rounded-button hover:bg-primary transition-colors !rounded-button whitespace-nowrap"
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product 4 -->
+              <div
+                class="product-card bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300"
+              >
+                <div class="relative">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=luxury%2520chocolate%2520bonbon%2520with%2520hazelnut%2520praline%2520filling%252C%2520elegant%2520dome%2520shape%2520with%2520gold%2520accent%252C%2520placed%2520on%2520dark%2520background%252C%2520professional%2520food%2520photography%2520with%2520dramatic%2520lighting%252C%2520high-end%2520gourmet%2520confectionery%252C%2520rich%2520textures%252C%2520shallow%2520depth%2520of%2520field&width=600&height=600&seq=7&orientation=squarish"
+                    alt="Hazelnut Praline"
+                    class="w-full h-64 object-cover object-top"
+                  />
+                  <div
+                    class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-md cursor-pointer hover:bg-primary hover:text-white transition-colors"
+                  >
+                    <i class="ri-heart-line"></i>
+                  </div>
+                </div>
+                <div class="p-6">
+                  <h3 class="text-xl font-semibold mb-2">Hazelnut Praline</h3>
+                  <p class="text-gray-600 text-sm mb-4">
+                    Milk chocolate dome filled with crunchy hazelnut praline and
+                    smooth gianduja.
+                  </p>
+                  <div class="flex items-center justify-between">
+                    <span class="text-primary font-bold text-lg">$13.25</span>
+                    <button
+                      class="bg-secondary text-white py-2 px-4 rounded-button hover:bg-primary transition-colors !rounded-button whitespace-nowrap"
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product 5 -->
+              <div
+                class="product-card bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300"
+              >
+                <div class="relative">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=luxury%2520chocolate%2520bonbon%2520with%2520champagne%2520filling%252C%2520elegant%2520oval%2520shape%2520with%2520gold%2520accent%252C%2520placed%2520on%2520dark%2520background%252C%2520professional%2520food%2520photography%2520with%2520dramatic%2520lighting%252C%2520high-end%2520gourmet%2520confectionery%252C%2520rich%2520textures%252C%2520shallow%2520depth%2520of%2520field&width=600&height=600&seq=8&orientation=squarish"
+                    alt="Champagne Truffle"
+                    class="w-full h-64 object-cover object-top"
+                  />
+                  <div
+                    class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-md cursor-pointer hover:bg-primary hover:text-white transition-colors"
+                  >
+                    <i class="ri-heart-line"></i>
+                  </div>
+                  <div
+                    class="absolute top-4 left-4 bg-secondary text-white text-xs py-1 px-3 rounded-full"
+                  >
+                    Limited
+                  </div>
+                </div>
+                <div class="p-6">
+                  <h3 class="text-xl font-semibold mb-2">Champagne Truffle</h3>
+                  <p class="text-gray-600 text-sm mb-4">
+                    White chocolate shell with Marc de Champagne ganache and a
+                    touch of gold dust.
+                  </p>
+                  <div class="flex items-center justify-between">
+                    <span class="text-primary font-bold text-lg">$15.95</span>
+                    <button
+                      class="bg-secondary text-white py-2 px-4 rounded-button hover:bg-primary transition-colors !rounded-button whitespace-nowrap"
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product 6 -->
+              <div
+                class="product-card bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300"
+              >
+                <div class="relative">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=luxury%2520chocolate%2520bonbon%2520with%2520pistachio%2520filling%252C%2520elegant%2520geometric%2520shape%2520with%2520green%2520accent%252C%2520placed%2520on%2520dark%2520background%252C%2520professional%2520food%2520photography%2520with%2520dramatic%2520lighting%252C%2520high-end%2520gourmet%2520confectionery%252C%2520rich%2520textures%252C%2520shallow%2520depth%2520of%2520field&width=600&height=600&seq=9&orientation=squarish"
+                    alt="Pistachio Dream"
+                    class="w-full h-64 object-cover object-top"
+                  />
+                  <div
+                    class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-md cursor-pointer hover:bg-primary hover:text-white transition-colors"
+                  >
+                    <i class="ri-heart-line"></i>
+                  </div>
+                </div>
+                <div class="p-6">
+                  <h3 class="text-xl font-semibold mb-2">Pistachio Dream</h3>
+                  <p class="text-gray-600 text-sm mb-4">
+                    Dark chocolate with pistachio praline, crushed pistachios
+                    and a hint of sea salt.
+                  </p>
+                  <div class="flex items-center justify-between">
+                    <span class="text-primary font-bold text-lg">$14.25</span>
+                    <button
+                      class="bg-secondary text-white py-2 px-4 rounded-button hover:bg-primary transition-colors !rounded-button whitespace-nowrap"
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product 7 -->
+              <div
+                class="product-card bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300"
+              >
+                <div class="relative">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=luxury%2520chocolate%2520bonbon%2520with%2520passion%2520fruit%2520filling%252C%2520elegant%2520round%2520shape%2520with%2520yellow%2520accent%252C%2520placed%2520on%2520dark%2520background%252C%2520professional%2520food%2520photography%2520with%2520dramatic%2520lighting%252C%2520high-end%2520gourmet%2520confectionery%252C%2520rich%2520textures%252C%2520shallow%2520depth%2520of%2520field&width=600&height=600&seq=10&orientation=squarish"
+                    alt="Passion Fruit Delight"
+                    class="w-full h-64 object-cover object-top"
+                  />
+                  <div
+                    class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-md cursor-pointer hover:bg-primary hover:text-white transition-colors"
+                  >
+                    <i class="ri-heart-line"></i>
+                  </div>
+                </div>
+                <div class="p-6">
+                  <h3 class="text-xl font-semibold mb-2">
+                    Passion Fruit Delight
+                  </h3>
+                  <p class="text-gray-600 text-sm mb-4">
+                    Dark chocolate shell filled with tangy passion fruit ganache
+                    and white chocolate.
+                  </p>
+                  <div class="flex items-center justify-between">
+                    <span class="text-primary font-bold text-lg">$13.95</span>
+                    <button
+                      class="bg-secondary text-white py-2 px-4 rounded-button hover:bg-primary transition-colors !rounded-button whitespace-nowrap"
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product 8 -->
+              <div
+                class="product-card bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300"
+              >
+                <div class="relative">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=luxury%2520chocolate%2520bonbon%2520gift%2520box%2520with%2520assorted%2520chocolates%252C%2520elegant%2520black%2520box%2520with%2520gold%2520accents%252C%2520placed%2520on%2520dark%2520background%252C%2520professional%2520product%2520photography%2520with%2520dramatic%2520lighting%252C%2520high-end%2520gourmet%2520confectionery%252C%2520rich%2520textures%252C%2520shallow%2520depth%2520of%2520field&width=600&height=600&seq=11&orientation=squarish"
+                    alt="Aurum Selection Box"
+                    class="w-full h-64 object-cover object-top"
+                  />
+                  <div
+                    class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-md cursor-pointer hover:bg-primary hover:text-white transition-colors"
+                  >
+                    <i class="ri-heart-line"></i>
+                  </div>
+                  <div
+                    class="absolute top-4 left-4 bg-primary text-white text-xs py-1 px-3 rounded-full"
+                  >
+                    Gift Set
+                  </div>
+                </div>
+                <div class="p-6">
+                  <h3 class="text-xl font-semibold mb-2">
+                    Aurum Selection Box
+                  </h3>
+                  <p class="text-gray-600 text-sm mb-4">
+                    A curated selection of our finest 12 bonbons in an elegant
+                    black and gold gift box.
+                  </p>
+                  <div class="flex items-center justify-between">
+                    <span class="text-primary font-bold text-lg">$49.95</span>
+                    <button
+                      class="bg-secondary text-white py-2 px-4 rounded-button hover:bg-primary transition-colors !rounded-button whitespace-nowrap"
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product 9 -->
+              <div
+                class="product-card bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300"
+              >
+                <div class="relative">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=luxury%2520chocolate%2520bonbon%2520with%2520coffee%2520filling%252C%2520elegant%2520square%2520shape%2520with%2520brown%2520accent%252C%2520placed%2520on%2520dark%2520background%252C%2520professional%2520food%2520photography%2520with%2520dramatic%2520lighting%252C%2520high-end%2520gourmet%2520confectionery%252C%2520rich%2520textures%252C%2520shallow%2520depth%2520of%2520field&width=600&height=600&seq=36&orientation=squarish"
+                    alt="Coffee Infusion"
+                    class="w-full h-64 object-cover object-top"
+                  />
+                  <div
+                    class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-md cursor-pointer hover:bg-primary hover:text-white transition-colors"
+                  >
+                    <i class="ri-heart-line"></i>
+                  </div>
+                </div>
+                <div class="p-6">
+                  <h3 class="text-xl font-semibold mb-2">Coffee Infusion</h3>
+                  <p class="text-gray-600 text-sm mb-4">
+                    Dark chocolate ganache infused with Ethiopian coffee beans
+                    and a hint of cardamom.
+                  </p>
+                  <div class="flex items-center justify-between">
+                    <span class="text-primary font-bold text-lg">$13.50</span>
+                    <button
+                      class="bg-secondary text-white py-2 px-4 rounded-button hover:bg-primary transition-colors !rounded-button whitespace-nowrap"
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product 10 -->
+              <div
+                class="product-card bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300"
+              >
+                <div class="relative">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=luxury%2520chocolate%2520bonbon%2520with%2520orange%2520filling%252C%2520elegant%2520round%2520shape%2520with%2520orange%2520accent%252C%2520placed%2520on%2520dark%2520background%252C%2520professional%2520food%2520photography%2520with%2520dramatic%2520lighting%252C%2520high-end%2520gourmet%2520confectionery%252C%2520rich%2520textures%252C%2520shallow%2520depth%2520of%2520field&width=600&height=600&seq=37&orientation=squarish"
+                    alt="Orange Blossom"
+                    class="w-full h-64 object-cover object-top"
+                  />
+                  <div
+                    class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-md cursor-pointer hover:bg-primary hover:text-white transition-colors"
+                  >
+                    <i class="ri-heart-line"></i>
+                  </div>
+                </div>
+                <div class="p-6">
+                  <h3 class="text-xl font-semibold mb-2">Orange Blossom</h3>
+                  <p class="text-gray-600 text-sm mb-4">
+                    Dark chocolate shell filled with orange-infused ganache and
+                    candied orange peel.
+                  </p>
+                  <div class="flex items-center justify-between">
+                    <span class="text-primary font-bold text-lg">$13.95</span>
+                    <button
+                      class="bg-secondary text-white py-2 px-4 rounded-button hover:bg-primary transition-colors !rounded-button whitespace-nowrap"
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product 11 -->
+              <div
+                class="product-card bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300"
+              >
+                <div class="relative">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=luxury%2520chocolate%2520bonbon%2520with%2520mint%2520filling%252C%2520elegant%2520square%2520shape%2520with%2520green%2520accent%252C%2520placed%2520on%2520dark%2520background%252C%2520professional%2520food%2520photography%2520with%2520dramatic%2520lighting%252C%2520high-end%2520gourmet%2520confectionery%252C%2520rich%2520textures%252C%2520shallow%2520depth%2520of%2520field&width=600&height=600&seq=38&orientation=squarish"
+                    alt="Mint Meditation"
+                    class="w-full h-64 object-cover object-top"
+                  />
+                  <div
+                    class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-md cursor-pointer hover:bg-primary hover:text-white transition-colors"
+                  >
+                    <i class="ri-heart-line"></i>
+                  </div>
+                </div>
+                <div class="p-6">
+                  <h3 class="text-xl font-semibold mb-2">Mint Meditation</h3>
+                  <p class="text-gray-600 text-sm mb-4">
+                    Dark chocolate ganache infused with fresh mint leaves and a
+                    touch of lime zest.
+                  </p>
+                  <div class="flex items-center justify-between">
+                    <span class="text-primary font-bold text-lg">$12.95</span>
+                    <button
+                      class="bg-secondary text-white py-2 px-4 rounded-button hover:bg-primary transition-colors !rounded-button whitespace-nowrap"
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Product 12 -->
+              <div
+                class="product-card bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300"
+              >
+                <div class="relative">
+                  <img
+                    src="https://readdy.ai/api/search-image?query=luxury%2520chocolate%2520bonbon%2520with%2520honey%2520filling%252C%2520elegant%2520hexagonal%2520shape%2520with%2520gold%2520accent%252C%2520placed%2520on%2520dark%2520background%252C%2520professional%2520food%2520photography%2520with%2520dramatic%2520lighting%252C%2520high-end%2520gourmet%2520confectionery%252C%2520rich%2520textures%252C%2520shallow%2520depth%2520of%2520field&width=600&height=600&seq=39&orientation=squarish"
+                    alt="Honey Gold"
+                    class="w-full h-64 object-cover object-top"
+                  />
+                  <div
+                    class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-md cursor-pointer hover:bg-primary hover:text-white transition-colors"
+                  >
+                    <i class="ri-heart-line"></i>
+                  </div>
+                  <div
+                    class="absolute top-4 left-4 bg-primary text-white text-xs py-1 px-3 rounded-full"
+                  >
+                    New
+                  </div>
+                </div>
+                <div class="p-6">
+                  <h3 class="text-xl font-semibold mb-2">Honey Gold</h3>
+                  <p class="text-gray-600 text-sm mb-4">
+                    Milk chocolate with wildflower honey ganache and a delicate
+                    honeycomb crunch.
+                  </p>
+                  <div class="flex items-center justify-between">
+                    <span class="text-primary font-bold text-lg">$14.75</span>
+                    <button
+                      class="bg-secondary text-white py-2 px-4 rounded-button hover:bg-primary transition-colors !rounded-button whitespace-nowrap"
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="flex justify-center mt-12">
+              <nav class="flex items-center space-x-2">
+                <a
+                  href="#"
+                  class="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-lg hover:border-primary hover:text-primary transition-colors"
+                >
+                  <i class="ri-arrow-left-s-line"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-10 h-10 flex items-center justify-center border border-primary bg-primary text-white rounded-lg"
+                  >1</a
+                >
+                <a
+                  href="#"
+                  class="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-lg hover:border-primary hover:text-primary transition-colors"
+                  >2</a
+                >
+                <a
+                  href="#"
+                  class="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-lg hover:border-primary hover:text-primary transition-colors"
+                  >3</a
+                >
+                <span class="w-10 h-10 flex items-center justify-center"
+                  >...</span
+                >
+                <a
+                  href="#"
+                  class="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-lg hover:border-primary hover:text-primary transition-colors"
+                  >8</a
+                >
+                <a
+                  href="#"
+                  class="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-lg hover:border-primary hover:text-primary transition-colors"
+                >
+                  <i class="ri-arrow-right-s-line"></i>
+                </a>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Featured Collections Section -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-4">Featured Collections</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Explore our curated selections of premium chocolate bonbons
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Collection 1 -->
+          <div class="bg-white rounded-lg overflow-hidden shadow-md">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=luxury%2520dark%2520chocolate%2520truffles%2520collection%2520arranged%2520elegantly%2520on%2520dark%2520background%252C%2520professional%2520food%2520photography%2520with%2520dramatic%2520lighting%252C%2520high-end%2520gourmet%2520confectionery%252C%2520rich%2520textures%252C%2520shallow%2520depth%2520of%2520field&width=600&height=400&seq=40&orientation=landscape"
+                alt="Truffle Collection"
+                class="w-full h-full object-cover object-top transform hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2">Truffle Collection</h3>
+              <p class="text-gray-600 mb-4">
+                Our signature truffles featuring rich ganache centers and
+                decadent toppings.
+              </p>
+              <button
+                class="bg-secondary text-white py-2 px-4 rounded-button hover:bg-primary transition-colors !rounded-button whitespace-nowrap"
+              >
+                Explore
+              </button>
+            </div>
+          </div>
+
+          <!-- Collection 2 -->
+          <div class="bg-white rounded-lg overflow-hidden shadow-md">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=luxury%2520chocolate%2520pralines%2520collection%2520arranged%2520elegantly%2520on%2520dark%2520background%252C%2520professional%2520food%2520photography%2520with%2520dramatic%2520lighting%252C%2520high-end%2520gourmet%2520confectionery%252C%2520rich%2520textures%252C%2520shallow%2520depth%2520of%2520field&width=600&height=400&seq=41&orientation=landscape"
+                alt="Praline Collection"
+                class="w-full h-full object-cover object-top transform hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2">Praline Collection</h3>
+              <p class="text-gray-600 mb-4">
+                Delicate nut pralines with caramelized sugars and premium
+                chocolate shells.
+              </p>
+              <button
+                class="bg-secondary text-white py-2 px-4 rounded-button hover:bg-primary transition-colors !rounded-button whitespace-nowrap"
+              >
+                Explore
+              </button>
+            </div>
+          </div>
+
+          <!-- Collection 3 -->
+          <div class="bg-white rounded-lg overflow-hidden shadow-md">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=luxury%2520limited%2520edition%2520chocolate%2520bonbons%2520with%2520gold%2520accents%2520arranged%2520elegantly%2520on%2520dark%2520background%252C%2520professional%2520food%2520photography%2520with%2520dramatic%2520lighting%252C%2520high-end%2520gourmet%2520confectionery%252C%2520rich%2520textures%252C%2520shallow%2520depth%2520of%2520field&width=600&height=400&seq=42&orientation=landscape"
+                alt="Limited Edition"
+                class="w-full h-full object-cover object-top transform hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2">Limited Edition</h3>
+              <p class="text-gray-600 mb-4">
+                Exclusive seasonal flavors and designs available for a limited
+                time only.
+              </p>
+              <button
+                class="bg-secondary text-white py-2 px-4 rounded-button hover:bg-primary transition-colors !rounded-button whitespace-nowrap"
+              >
+                Explore
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary text-white pt-16 pb-8">
+      <div class="container mx-auto px-6">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-16"
+        >
+          <div>
+            <a
+              href="https://readdy.ai/home/3cb038c5-34bb-4083-a71d-8204ed17e274/902307d7-3ca3-4126-9595-9c76be48d4b5"
+              data-readdy="true"
+              class="logo text-primary text-3xl mb-6 block"
+              >Aurum</a
+            >
+            <p class="text-gray-400 mb-6">
+              Artisanal chocolate bonbons handcrafted to perfection. Experience
+              luxury in every bite.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="w-10 h-10 flex items-center justify-center border border-gray-700 rounded-full text-primary hover:bg-primary hover:text-white transition-colors"
+              >
+                <i class="ri-instagram-line"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 flex items-center justify-center border border-gray-700 rounded-full text-primary hover:bg-primary hover:text-white transition-colors"
+              >
+                <i class="ri-facebook-line"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 flex items-center justify-center border border-gray-700 rounded-full text-primary hover:bg-primary hover:text-white transition-colors"
+              >
+                <i class="ri-pinterest-line"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 flex items-center justify-center border border-gray-700 rounded-full text-primary hover:bg-primary hover:text-white transition-colors"
+              >
+                <i class="ri-twitter-x-line"></i>
+              </a>
+            </div>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-6">Quick Links</h4>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="https://readdy.ai/home/3cb038c5-34bb-4083-a71d-8204ed17e274/902307d7-3ca3-4126-9595-9c76be48d4b5"
+                  data-readdy="true"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Collections</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Corporate Gifts</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Stores</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-6">Customer Care</h4>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Shipping Information</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Returns & Exchanges</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >FAQ</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Track Your Order</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Privacy Policy</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-primary transition-colors"
+                  >Terms & Conditions</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-6">Join the Aurum Family</h4>
+            <p class="text-gray-400 mb-6">
+              Subscribe to our newsletter for exclusive offers, new collections,
+              and chocolate inspiration.
+            </p>
+            <form class="mb-6">
+              <div class="flex">
+                <input
+                  type="email"
+                  placeholder="Your email address"
+                  class="flex-1 bg-gray-800 border-none text-white py-3 px-4 rounded-l-button"
+                />
+                <button
+                  type="submit"
+                  class="bg-primary text-white py-3 px-4 rounded-r-button hover:bg-primary/90 transition-colors !rounded-button whitespace-nowrap"
+                >
+                  Subscribe
+                </button>
+              </div>
+            </form>
+            <div>
+              <h5 class="text-sm font-semibold mb-4">Payment Methods</h5>
+              <div class="flex space-x-3">
+                <div
+                  class="w-10 h-6 flex items-center justify-center text-primary"
+                >
+                  <i class="ri-visa-fill ri-lg"></i>
+                </div>
+                <div
+                  class="w-10 h-6 flex items-center justify-center text-primary"
+                >
+                  <i class="ri-mastercard-fill ri-lg"></i>
+                </div>
+                <div
+                  class="w-10 h-6 flex items-center justify-center text-primary"
+                >
+                  <i class="ri-paypal-fill ri-lg"></i>
+                </div>
+                <div
+                  class="w-10 h-6 flex items-center justify-center text-primary"
+                >
+                  <i class="ri-apple-fill ri-lg"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pt-8 border-t border-gray-800 text-center text-gray-500 text-sm"
+        >
+          <p>&copy; 2025 Aurum Chocolates. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Sticky Header
+        const header = document.getElementById("header");
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 50) {
+            header.classList.add("shadow-md");
+          } else {
+            header.classList.remove("shadow-md");
+          }
+        });
+
+        // Scroll Progress
+        const scrollProgress = document.getElementById("scrollProgress");
+        window.addEventListener("scroll", function () {
+          const scrollTop = window.scrollY;
+          const docHeight = document.body.offsetHeight - window.innerHeight;
+          const scrollPercent = (scrollTop / docHeight) * 100;
+          scrollProgress.style.width = scrollPercent + "%";
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+        const mobileMenuClose = document.getElementById("mobileMenuClose");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        mobileMenuToggle.addEventListener("click", function () {
+          mobileMenu.classList.remove("translate-x-full");
+        });
+
+        mobileMenuClose.addEventListener("click", function () {
+          mobileMenu.classList.add("translate-x-full");
+        });
+
+        // Cart Panel Toggle
+        const cartToggle = document.getElementById("cartToggle");
+        const cartClose = document.getElementById("cartClose");
+        const cartPanel = document.getElementById("cartPanel");
+
+        cartToggle.addEventListener("click", function () {
+          cartPanel.classList.add("open");
+        });
+
+        cartClose.addEventListener("click", function () {
+          cartPanel.classList.remove("open");
+        });
+
+        // Mobile Filter Panel Toggle
+        const mobileFilterToggle = document.getElementById("mobileFilterToggle");
+        const mobileFilterClose = document.getElementById("mobileFilterClose");
+        const mobileFilterPanel = document.getElementById("mobileFilterPanel");
+
+        mobileFilterToggle.addEventListener("click", function () {
+          mobileFilterPanel.classList.add("open");
+        });
+
+        mobileFilterClose.addEventListener("click", function () {
+          mobileFilterPanel.classList.remove("open");
+        });
+
+        // Sort Dropdown Toggle
+        const sortDropdown = document.getElementById("sortDropdown");
+        const sortOptions = document.getElementById("sortOptions");
+
+        sortDropdown.addEventListener("click", function () {
+          sortOptions.classList.toggle("hidden");
+        });
+
+        document.addEventListener("click", function (e) {
+          if (!sortDropdown.contains(e.target)) {
+            sortOptions.classList.add("hidden");
+          }
+        });
+
+        // Price Slider
+        const priceSlider = document.getElementById("priceSlider");
+        const priceValue = document.getElementById("priceValue");
+        const mobilePriceSlider = document.getElementById("mobilePriceSlider");
+        const mobilePriceValue = document.getElementById("mobilePriceValue");
+
+        if (priceSlider && priceValue) {
+          priceSlider.addEventListener("input", function () {
+            priceValue.textContent = "$" + this.value;
+          });
+        }
+
+        if (mobilePriceSlider && mobilePriceValue) {
+          mobilePriceSlider.addEventListener("input", function () {
+            mobilePriceValue.textContent = "$" + this.value;
+          });
+        }
+
+        // Close panels when clicking outside
+        window.addEventListener("click", function (e) {
+          if (
+            cartPanel.classList.contains("open") &&
+            !cartPanel.contains(e.target) &&
+            e.target !== cartToggle
+          ) {
+            cartPanel.classList.remove("open");
+          }
+
+          if (
+            mobileFilterPanel.classList.contains("open") &&
+            !mobileFilterPanel.contains(e.target) &&
+            e.target !== mobileFilterToggle
+          ) {
+            mobileFilterPanel.classList.remove("open");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

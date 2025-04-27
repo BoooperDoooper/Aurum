@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customize Your Bonbon - Step 2 | Aurum</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#D4AF37", secondary: "#000000" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      body {
+        font-family: 'Montserrat', sans-serif;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Playfair Display', serif;
+      }
+      .logo {
+        font-family: 'Pacifico', serif;
+      }
+      .custom-checkbox {
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #D4AF37;
+        border-radius: 4px;
+        background-color: transparent;
+        display: inline-block;
+        position: relative;
+        cursor: pointer;
+      }
+      .custom-checkbox:checked {
+        background-color: #D4AF37;
+      }
+      .custom-checkbox:checked::after {
+        content: '';
+        position: absolute;
+        left: 6px;
+        top: 2px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+      }
+      .custom-radio {
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #D4AF37;
+        border-radius: 50%;
+        background-color: transparent;
+        display: inline-block;
+        position: relative;
+        cursor: pointer;
+      }
+      .custom-radio:checked {
+        border-color: #D4AF37;
+      }
+      .custom-radio:checked::after {
+        content: '';
+        position: absolute;
+        left: 3px;
+        top: 3px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #D4AF37;
+      }
+      .flavor-card.selected {
+        border-color: #D4AF37;
+        background-color: rgba(212, 175, 55, 0.05);
+      }
+      .topping-card.selected {
+        border-color: #D4AF37;
+        background-color: rgba(212, 175, 55, 0.05);
+      }
+    </style>
+  </head>
+  <body class="bg-white">
+    <!-- Header -->
+    <header class="bg-secondary text-white py-4 fixed w-full z-50 shadow-md">
+      <div class="container mx-auto px-6 flex items-center justify-between">
+        <a href="index.html" class="logo text-primary text-3xl">Aurum</a>
+        <div class="flex items-center space-x-6">
+          <div
+            class="w-6 h-6 flex items-center justify-center text-primary cursor-pointer"
+          >
+            <i class="ri-shopping-bag-line ri-lg"></i>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-16">
+      <div class="container mx-auto px-6">
+        <!-- Progress Steps -->
+        <div class="flex items-center justify-center mb-12">
+          <div class="flex items-center">
+            <div
+              class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center"
+            >
+              1
+            </div>
+            <div class="h-1 w-16 bg-primary"></div>
+            <div
+              class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center"
+            >
+              2
+            </div>
+            <div class="h-1 w-16 bg-gray-200"></div>
+            <div
+              class="w-8 h-8 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center"
+            >
+              3
+            </div>
+          </div>
+        </div>
+
+        <div class="max-w-4xl mx-auto">
+          <h1 class="text-3xl md:text-4xl font-bold text-center mb-4">
+            Choose Your Flavors & Toppings
+          </h1>
+          <p class="text-gray-600 text-center mb-12">
+            Select up to 3 flavors and customize with your favorite toppings
+          </p>
+
+          <!-- Flavors Section -->
+          <section class="mb-12">
+            <h2 class="text-2xl font-semibold mb-6">Select Flavors</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <!-- Flavor 1 -->
+              <div
+                class="flavor-card border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors"
+              >
+                <div class="flex items-start mb-4">
+                  <input
+                    type="checkbox"
+                    class="custom-checkbox mt-1"
+                    name="flavor"
+                  />
+                  <div class="ml-3">
+                    <h3 class="font-semibold">Dark Chocolate Ganache</h3>
+                    <p class="text-sm text-gray-600">
+                      70% single-origin dark chocolate
+                    </p>
+                  </div>
+                </div>
+                <img
+                  src="https://readdy.ai/api/search-image?query=luxury%20dark%20chocolate%20ganache%20truffle%20close-up%20on%20dark%20background%2C%20professional%20food%20photography%20with%20dramatic%20lighting%2C%20rich%20textures%2C%20shallow%20depth%20of%20field&width=400&height=300&seq=101&orientation=landscape"
+                  alt="Dark Chocolate"
+                  class="w-full h-32 object-cover rounded"
+                />
+              </div>
+
+              <!-- Flavor 2 -->
+              <div
+                class="flavor-card border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors"
+              >
+                <div class="flex items-start mb-4">
+                  <input
+                    type="checkbox"
+                    class="custom-checkbox mt-1"
+                    name="flavor"
+                  />
+                  <div class="ml-3">
+                    <h3 class="font-semibold">Raspberry White Chocolate</h3>
+                    <p class="text-sm text-gray-600">
+                      Fresh raspberry puree & white chocolate
+                    </p>
+                  </div>
+                </div>
+                <img
+                  src="https://readdy.ai/api/search-image?query=luxury%20white%20chocolate%20raspberry%20truffle%20close-up%20on%20dark%20background%2C%20professional%20food%20photography%20with%20dramatic%20lighting%2C%20rich%20textures%2C%20shallow%20depth%20of%20field&width=400&height=300&seq=102&orientation=landscape"
+                  alt="Raspberry White Chocolate"
+                  class="w-full h-32 object-cover rounded"
+                />
+              </div>
+
+              <!-- Flavor 3 -->
+              <div
+                class="flavor-card border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors"
+              >
+                <div class="flex items-start mb-4">
+                  <input
+                    type="checkbox"
+                    class="custom-checkbox mt-1"
+                    name="flavor"
+                  />
+                  <div class="ml-3">
+                    <h3 class="font-semibold">Salted Caramel</h3>
+                    <p class="text-sm text-gray-600">
+                      Buttery caramel with sea salt
+                    </p>
+                  </div>
+                </div>
+                <img
+                  src="https://readdy.ai/api/search-image?query=luxury%20salted%20caramel%20chocolate%20truffle%20close-up%20on%20dark%20background%2C%20professional%20food%20photography%20with%20dramatic%20lighting%2C%20rich%20textures%2C%20shallow%20depth%20of%20field&width=400&height=300&seq=103&orientation=landscape"
+                  alt="Salted Caramel"
+                  class="w-full h-32 object-cover rounded"
+                />
+              </div>
+
+              <!-- Flavor 4 -->
+              <div
+                class="flavor-card border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors"
+              >
+                <div class="flex items-start mb-4">
+                  <input
+                    type="checkbox"
+                    class="custom-checkbox mt-1"
+                    name="flavor"
+                  />
+                  <div class="ml-3">
+                    <h3 class="font-semibold">Hazelnut Praline</h3>
+                    <p class="text-sm text-gray-600">
+                      Crunchy hazelnut with milk chocolate
+                    </p>
+                  </div>
+                </div>
+                <img
+                  src="https://readdy.ai/api/search-image?query=luxury%20hazelnut%20praline%20chocolate%20truffle%20close-up%20on%20dark%20background%2C%20professional%20food%20photography%20with%20dramatic%20lighting%2C%20rich%20textures%2C%20shallow%20depth%20of%20field&width=400&height=300&seq=104&orientation=landscape"
+                  alt="Hazelnut Praline"
+                  class="w-full h-32 object-cover rounded"
+                />
+              </div>
+
+              <!-- Flavor 5 -->
+              <div
+                class="flavor-card border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors"
+              >
+                <div class="flex items-start mb-4">
+                  <input
+                    type="checkbox"
+                    class="custom-checkbox mt-1"
+                    name="flavor"
+                  />
+                  <div class="ml-3">
+                    <h3 class="font-semibold">Champagne Truffle</h3>
+                    <p class="text-sm text-gray-600">
+                      Marc de Champagne ganache
+                    </p>
+                  </div>
+                </div>
+                <img
+                  src="https://readdy.ai/api/search-image?query=luxury%20champagne%20chocolate%20truffle%20close-up%20on%20dark%20background%2C%20professional%20food%20photography%20with%20dramatic%20lighting%2C%20rich%20textures%2C%20shallow%20depth%20of%20field&width=400&height=300&seq=105&orientation=landscape"
+                  alt="Champagne Truffle"
+                  class="w-full h-32 object-cover rounded"
+                />
+              </div>
+
+              <!-- Flavor 6 -->
+              <div
+                class="flavor-card border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors"
+              >
+                <div class="flex items-start mb-4">
+                  <input
+                    type="checkbox"
+                    class="custom-checkbox mt-1"
+                    name="flavor"
+                  />
+                  <div class="ml-3">
+                    <h3 class="font-semibold">Pistachio Dream</h3>
+                    <p class="text-sm text-gray-600">
+                      Pistachio praline with dark chocolate
+                    </p>
+                  </div>
+                </div>
+                <img
+                  src="https://readdy.ai/api/search-image?query=luxury%20pistachio%20chocolate%20truffle%20close-up%20on%20dark%20background%2C%20professional%20food%20photography%20with%20dramatic%20lighting%2C%20rich%20textures%2C%20shallow%20depth%20of%20field&width=400&height=300&seq=106&orientation=landscape"
+                  alt="Pistachio Dream"
+                  class="w-full h-32 object-cover rounded"
+                />
+              </div>
+            </div>
+          </section>
+
+          <!-- Toppings Section -->
+          <section class="mb-12">
+            <h2 class="text-2xl font-semibold mb-6">Select Toppings</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              <!-- Topping 1 -->
+              <div
+                class="topping-card border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors"
+              >
+                <div class="flex items-start">
+                  <input
+                    type="radio"
+                    class="custom-radio mt-1"
+                    name="topping"
+                  />
+                  <div class="ml-3">
+                    <h3 class="font-semibold">Gold Dust</h3>
+                    <p class="text-sm text-gray-600">24k edible gold</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Topping 2 -->
+              <div
+                class="topping-card border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors"
+              >
+                <div class="flex items-start">
+                  <input
+                    type="radio"
+                    class="custom-radio mt-1"
+                    name="topping"
+                  />
+                  <div class="ml-3">
+                    <h3 class="font-semibold">Cocoa Powder</h3>
+                    <p class="text-sm text-gray-600">Premium dark cocoa</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Topping 3 -->
+              <div
+                class="topping-card border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors"
+              >
+                <div class="flex items-start">
+                  <input
+                    type="radio"
+                    class="custom-radio mt-1"
+                    name="topping"
+                  />
+                  <div class="ml-3">
+                    <h3 class="font-semibold">Chopped Nuts</h3>
+                    <p class="text-sm text-gray-600">Mixed premium nuts</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Topping 4 -->
+              <div
+                class="topping-card border border-gray-200 rounded-lg p-4 cursor-pointer hover:border-primary transition-colors"
+              >
+                <div class="flex items-start">
+                  <input
+                    type="radio"
+                    class="custom-radio mt-1"
+                    name="topping"
+                  />
+                  <div class="ml-3">
+                    <h3 class="font-semibold">Coconut</h3>
+                    <p class="text-sm text-gray-600">Toasted coconut flakes</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Navigation Buttons -->
+          <div class="flex justify-between items-center">
+            <a
+              href="customize-step1.html"
+              class="flex items-center text-secondary hover:text-primary transition-colors"
+            >
+              <i class="ri-arrow-left-line mr-2"></i>
+              Back
+            </a>
+            <button
+              class="bg-primary text-white py-3 px-8 rounded-button hover:bg-primary/90 transition-colors !rounded-button whitespace-nowrap"
+              id="nextStep"
+            >
+              Continue to Packaging
+              <i class="ri-arrow-right-line ml-2"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Flavor Selection
+        const flavorCards = document.querySelectorAll(".flavor-card");
+        const flavorCheckboxes = document.querySelectorAll('input[name="flavor"]');
+        let selectedFlavors = 0;
+
+        flavorCards.forEach((card, index) => {
+          card.addEventListener("click", () => {
+            const checkbox = flavorCheckboxes[index];
+            if (!checkbox.checked && selectedFlavors >= 3) {
+              return;
+            }
+            checkbox.checked = !checkbox.checked;
+            card.classList.toggle("selected");
+            selectedFlavors = checkbox.checked
+              ? selectedFlavors + 1
+              : selectedFlavors - 1;
+          });
+        });
+
+        // Topping Selection
+        const toppingCards = document.querySelectorAll(".topping-card");
+        const toppingRadios = document.querySelectorAll('input[name="topping"]');
+
+        toppingCards.forEach((card, index) => {
+          card.addEventListener("click", () => {
+            toppingCards.forEach((c) => c.classList.remove("selected"));
+            toppingRadios.forEach((r) => (r.checked = false));
+
+            toppingRadios[index].checked = true;
+            card.classList.add("selected");
+          });
+        });
+
+        // Next Step Button
+        const nextStepButton = document.getElementById("nextStep");
+        nextStepButton.addEventListener("click", () => {
+          if (selectedFlavors === 0) {
+            alert("Please select at least one flavor");
+            return;
+          }
+          if (!Array.from(toppingRadios).some((radio) => radio.checked)) {
+            alert("Please select a topping");
+            return;
+          }
+          window.location.href = "customize-step3.html";
+        });
+      });
+    </script>
+  </body>
+</html>
