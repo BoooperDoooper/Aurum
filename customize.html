@@ -1,1 +1,321 @@
-shits
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customize Your Bonbon - Aurum</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#D4AF37',secondary:'#000000'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+}
+.logo {
+  font-family: 'Pacifico', serif;
+}
+.shape-option input[type="radio"] {
+  display: none;
+}
+.shape-option input[type="radio"]:checked + label {
+  border-color: #D4AF37;
+  background-color: rgba(212, 175, 55, 0.1);
+}
+.color-option input[type="radio"] {
+  display: none;
+}
+.color-option input[type="radio"]:checked + label {
+  transform: scale(1.1);
+  border-width: 2px;
+}
+.flavor-option input[type="radio"] {
+  display: none;
+}
+.flavor-option input[type="radio"]:checked + label {
+  border-color: #D4AF37;
+  background-color: rgba(212, 175, 55, 0.1);
+}
+.preview-bonbon {
+  transition: all 0.3s ease;
+}
+</style>
+</head>
+<body class="bg-white">
+<!-- Header -->
+<header class="bg-secondary text-white py-4 fixed w-full z-50 shadow-md">
+<div class="container mx-auto px-6 flex items-center justify-between">
+  <a href="index.html" class="logo text-primary text-3xl">Aurum</a>
+  <a href="index.html" class="text-white hover:text-primary transition-colors flex items-center gap-2">
+    <i class="ri-arrow-left-line"></i>
+    Back to Collections
+  </a>
+</div>
+</header>
+<!-- Main Content -->
+<main class="pt-24 pb-16">
+<div class="container mx-auto px-6">
+  <div class="text-center mb-12">
+    <h1 class="text-4xl font-bold mb-4">Create Your Perfect Bonbon</h1>
+    <p class="text-gray-600 max-w-2xl mx-auto">Design your own luxury chocolate experience by selecting the shape, color, and flavor of your dreams.</p>
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+    <!-- Customization Options -->
+    <div class="space-y-12">
+      <!-- Shape Selection -->
+      <section>
+        <h2 class="text-2xl font-semibold mb-6">1. Choose Your Shape</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+          <div class="shape-option">
+            <input type="radio" name="shape" id="shape1" value="round" checked>
+            <label for="shape1" class="block p-4 border-2 rounded-lg cursor-pointer transition-all hover:border-primary/50 text-center">
+              <div class="w-16 h-16 mx-auto mb-3 flex items-center justify-center">
+                <i class="ri-circle-line ri-3x"></i>
+              </div>
+              <span class="font-medium">Round</span>
+            </label>
+          </div>
+          <div class="shape-option">
+            <input type="radio" name="shape" id="shape2" value="square">
+            <label for="shape2" class="block p-4 border-2 rounded-lg cursor-pointer transition-all hover:border-primary/50 text-center">
+              <div class="w-16 h-16 mx-auto mb-3 flex items-center justify-center">
+                <i class="ri-square-line ri-3x"></i>
+              </div>
+              <span class="font-medium">Square</span>
+            </label>
+          </div>
+          <div class="shape-option">
+            <input type="radio" name="shape" id="shape3" value="heart">
+            <label for="shape3" class="block p-4 border-2 rounded-lg cursor-pointer transition-all hover:border-primary/50 text-center">
+              <div class="w-16 h-16 mx-auto mb-3 flex items-center justify-center">
+                <i class="ri-heart-line ri-3x"></i>
+              </div>
+              <span class="font-medium">Heart</span>
+            </label>
+          </div>
+        </div>
+      </section>
+      <!-- Color Selection -->
+      <section>
+        <h2 class="text-2xl font-semibold mb-6">2. Select Your Color</h2>
+        <div class="grid grid-cols-4 sm:grid-cols-6 gap-4">
+          <div class="color-option">
+            <input type="radio" name="color" id="color1" value="gold" checked>
+            <label for="color1" class="block w-12 h-12 rounded-full cursor-pointer transition-all border-2 border-transparent" style="background: linear-gradient(45deg, #D4AF37, #FFD700)"></label>
+          </div>
+          <div class="color-option">
+            <input type="radio" name="color" id="color2" value="silver">
+            <label for="color2" class="block w-12 h-12 rounded-full cursor-pointer transition-all border-2 border-transparent" style="background: linear-gradient(45deg, #C0C0C0, #E8E8E8)"></label>
+          </div>
+          <div class="color-option">
+            <input type="radio" name="color" id="color3" value="rose">
+            <label for="color3" class="block w-12 h-12 rounded-full cursor-pointer transition-all border-2 border-transparent" style="background: linear-gradient(45deg, #B76E79, #E8C1C5)"></label>
+          </div>
+          <div class="color-option">
+            <input type="radio" name="color" id="color4" value="bronze">
+            <label for="color4" class="block w-12 h-12 rounded-full cursor-pointer transition-all border-2 border-transparent" style="background: linear-gradient(45deg, #CD7F32, #E1B087)"></label>
+          </div>
+          <div class="color-option">
+            <input type="radio" name="color" id="color5" value="pearl">
+            <label for="color5" class="block w-12 h-12 rounded-full cursor-pointer transition-all border-2 border-transparent" style="background: linear-gradient(45deg, #F0EAD6, #FFFFFF)"></label>
+          </div>
+          <div class="color-option">
+            <input type="radio" name="color" id="color6" value="copper">
+            <label for="color6" class="block w-12 h-12 rounded-full cursor-pointer transition-all border-2 border-transparent" style="background: linear-gradient(45deg, #B87333, #E3A857)"></label>
+          </div>
+        </div>
+      </section>
+      <!-- Flavor Selection -->
+      <section>
+        <h2 class="text-2xl font-semibold mb-6">3. Pick Your Flavor</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="flavor-option">
+            <input type="radio" name="flavor" id="flavor1" value="dark-truffle" checked>
+            <label for="flavor1" class="block p-4 border-2 rounded-lg cursor-pointer transition-all hover:border-primary/50">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full text-primary">
+                  <i class="ri-drop-fill"></i>
+                </div>
+                <div>
+                  <h3 class="font-medium">Dark Truffle</h3>
+                  <p class="text-sm text-gray-600">70% dark chocolate ganache</p>
+                </div>
+              </div>
+            </label>
+          </div>
+          <div class="flavor-option">
+            <input type="radio" name="flavor" id="flavor2" value="raspberry">
+            <label for="flavor2" class="block p-4 border-2 rounded-lg cursor-pointer transition-all hover:border-primary/50">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full text-primary">
+                  <i class="ri-heart-fill"></i>
+                </div>
+                <div>
+                  <h3 class="font-medium">Raspberry</h3>
+                  <p class="text-sm text-gray-600">Fresh raspberry ganache</p>
+                </div>
+              </div>
+            </label>
+          </div>
+          <div class="flavor-option">
+            <input type="radio" name="flavor" id="flavor3" value="hazelnut">
+            <label for="flavor3" class="block p-4 border-2 rounded-lg cursor-pointer transition-all hover:border-primary/50">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full text-primary">
+                  <i class="ri-seed-fill"></i>
+                </div>
+                <div>
+                  <h3 class="font-medium">Hazelnut</h3>
+                  <p class="text-sm text-gray-600">Crunchy praline filling</p>
+                </div>
+              </div>
+            </label>
+          </div>
+          <div class="flavor-option">
+            <input type="radio" name="flavor" id="flavor4" value="caramel">
+            <label for="flavor4" class="block p-4 border-2 rounded-lg cursor-pointer transition-all hover:border-primary/50">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full text-primary">
+                  <i class="ri-water-flash-fill"></i>
+                </div>
+                <div>
+                  <h3 class="font-medium">Salted Caramel</h3>
+                  <p class="text-sm text-gray-600">Buttery caramel center</p>
+                </div>
+              </div>
+            </label>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- Preview and Order -->
+    <div class="lg:sticky lg:top-32">
+      <div class="bg-white rounded-xl shadow-lg p-8">
+        <h2 class="text-2xl font-semibold mb-6">Your Custom Bonbon</h2>
+        
+        <!-- Preview -->
+        <div class="mb-8">
+          <div class="bg-gray-50 rounded-lg p-8 flex items-center justify-center">
+            <div class="preview-bonbon w-48 h-48 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#FFD700] shadow-xl"></div>
+          </div>
+        </div>
+        <!-- Selection Summary -->
+        <div class="space-y-4 mb-8">
+          <div class="flex items-center justify-between">
+            <span class="text-gray-600">Shape</span>
+            <span class="font-medium" id="selectedShape">Round</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-gray-600">Color</span>
+            <span class="font-medium" id="selectedColor">Gold</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-gray-600">Flavor</span>
+            <span class="font-medium" id="selectedFlavor">Dark Truffle</span>
+          </div>
+          <div class="border-t border-gray-200 pt-4">
+            <div class="flex items-center justify-between">
+              <span class="text-gray-600">Quantity</span>
+              <div class="flex items-center gap-4">
+                <button class="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-full !rounded-full hover:border-primary transition-colors" id="decreaseQuantity">-</button>
+                <span id="quantity">1</span>
+                <button class="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-full !rounded-full hover:border-primary transition-colors" id="increaseQuantity">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Price and Actions -->
+        <div class="space-y-4">
+          <div class="flex items-center justify-between text-xl">
+            <span class="font-semibold">Total</span>
+            <span class="text-primary font-bold" id="totalPrice">$14.95</span>
+          </div>
+          <button class="w-full bg-primary text-white py-3 px-6 rounded-button hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 !rounded-button whitespace-nowrap">
+            <i class="ri-shopping-cart-line"></i>
+            Add to Cart
+          </button>
+          <button class="w-full border border-secondary text-secondary py-3 px-6 rounded-button hover:bg-secondary hover:text-white transition-colors !rounded-button whitespace-nowrap">
+            Save Design
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const previewBonbon = document.querySelector('.preview-bonbon');
+  const selectedShape = document.getElementById('selectedShape');
+  const selectedColor = document.getElementById('selectedColor');
+  const selectedFlavor = document.getElementById('selectedFlavor');
+  const quantityElement = document.getElementById('quantity');
+  const totalPriceElement = document.getElementById('totalPrice');
+  const decreaseQuantityBtn = document.getElementById('decreaseQuantity');
+  const increaseQuantityBtn = document.getElementById('increaseQuantity');
+  let quantity = 1;
+  const pricePerBonbon = 14.95;
+  // Shape selection
+  document.querySelectorAll('input[name="shape"]').forEach(input => {
+    input.addEventListener('change', function() {
+      selectedShape.textContent = this.value.charAt(0).toUpperCase() + this.value.slice(1);
+      updatePreview();
+    });
+  });
+  // Color selection
+  document.querySelectorAll('input[name="color"]').forEach(input => {
+    input.addEventListener('change', function() {
+      selectedColor.textContent = this.value.charAt(0).toUpperCase() + this.value.slice(1);
+      updatePreview();
+    });
+  });
+  // Flavor selection
+  document.querySelectorAll('input[name="flavor"]').forEach(input => {
+    input.addEventListener('change', function() {
+      selectedFlavor.textContent = input.parentElement.querySelector('h3').textContent;
+      updatePreview();
+    });
+  });
+  // Quantity controls
+  decreaseQuantityBtn.addEventListener('click', function() {
+    if (quantity > 1) {
+      quantity--;
+      updateQuantityAndPrice();
+    }
+  });
+  increaseQuantityBtn.addEventListener('click', function() {
+    quantity++;
+    updateQuantityAndPrice();
+  });
+  function updateQuantityAndPrice() {
+    quantityElement.textContent = quantity;
+    totalPriceElement.textContent = `$${(quantity * pricePerBonbon).toFixed(2)}`;
+  }
+  function updatePreview() {
+    const shape = document.querySelector('input[name="shape"]:checked').value;
+    const color = document.querySelector('input[name="color"]:checked').value;
+    
+    // Update shape
+    previewBonbon.style.borderRadius = shape === 'square' ? '20%' : 
+                                      shape === 'heart' ? '50% 50% 0 0' : '50%';
+    // Update color based on selection
+    const colorGradients = {
+      gold: 'linear-gradient(45deg, #D4AF37, #FFD700)',
+      silver: 'linear-gradient(45deg, #C0C0C0, #E8E8E8)',
+      rose: 'linear-gradient(45deg, #B76E79, #E8C1C5)',
+      bronze: 'linear-gradient(45deg, #CD7F32, #E1B087)',
+      pearl: 'linear-gradient(45deg, #F0EAD6, #FFFFFF)',
+      copper: 'linear-gradient(45deg, #B87333, #E3A857)'
+    };
+    previewBonbon.style.background = colorGradients[color];
+  }
+});
+</script>
+</body>
+</html>
